@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Audit Self Help Portal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <meta name="theme-color" content="#ffffff">
+    <link rel="icon" type="image/jpeg" href="/logo192.jpg" />
+    <link rel="apple-touch-icon" href="/logo192.jpg">
+    <link rel="manifest" href="/manifest.json">
+    <style>
+      :root {
+        --primary-color: #3b82f6; /* Default Blue */
+        --primary-color-hover: #2563eb;
+        --primary-color-focus-ring: #93c5fd;
+        --primary-foreground: #ffffff;
+
+        /* Light Theme Palette */
+        --background: linear-gradient(to bottom right, #f8fafc, #e2e8f0); /* slate-50 to slate-200 */
+        --foreground: #0f172a; /* slate-900 */
+        --foreground-muted: #475569; /* slate-600 */
+        
+        --card-background: #ffffff; /* white */
+        --card-foreground: #0f172a; /* slate-900 */
+        --card-footer-background: #f1f5f9; /* slate-100 */
+        --card-inset-background: #f8fafc; /* slate-50 */
+        
+        --popover-background: #ffffff;
+        --popover-foreground: #0f172a;
+
+        --border: #e2e8f0; /* slate-200 */
+        --input: #e2e8f0; /* slate-200 */
+        --ring: #93c5fd; /* blue-300 */
+        
+        --placeholder-background: #f8fafc; /* slate-50 */
+        --placeholder-foreground: #9ca3af; /* slate-400 */
+        --metric-card-background: #ffffff; /* white */
+        --metric-card-hover-background: #f1f5f9; /* slate-100 */
+        --metric-card-arrow-color: #9ca3af; /* gray-400 */
+        --header-background: #f1f5f9cc; /* slate-100 with ~80% opacity */
+        --skeleton-background: #e5e7eb; /* gray-200 */
+
+        /* New Variables */
+        --secondary-background: #ffffff;
+        --secondary-foreground: #374151; /* gray-700 */
+        --secondary-border: #d1d5db; /* gray-300 */
+        --secondary-hover-background: #f9fafb; /* gray-50 */
+
+        --sidebar-background: #f1f5f9; /* slate-100 */
+        --sidebar-foreground: #475569; /* slate-600 */
+        --sidebar-muted-foreground: #64748b; /* slate-500 */
+        --sidebar-border: #e2e8f0; /* slate-200 */
+        --sidebar-active-background: #ffffff; /* white */
+        --sidebar-hover-background: #ffffff; /* white */
+        
+        --toast-success-background: #dcfce7; /* green-100 */
+        --toast-success-foreground: #15803d; /* green-700 */
+        --toast-error-background: #fee2e2; /* red-100 */
+        --toast-error-foreground: #b91c1c; /* red-700 */
+        --toast-info-background: #dbeafe; /* blue-100 */
+        --toast-info-foreground: #1d4ed8; /* blue-700 */
+        --toast-warning-background: #fef9c3; /* yellow-100 */
+        --toast-warning-foreground: #854d0e; /* yellow-800 */
+
+        --main-background: #f8fafc; /* slate-50 */
+        --footer-background: #f1f5f9; /* slate-100 */
+
+        --tab-background: #e2e8f0; /* slate-200 */
+        --tab-foreground: #475569; /* slate-600 */
+                --tab-active-background: #ffffff; /* white */
+        --tab-active-foreground: var(--primary-color);
+        --tab-hover-background: rgba(255, 255, 255, 0.5);
+        
+        --list-item-hover-background: #f1f5f9; /* slate-100 */
+        --list-item-active-background: #eff6ff; /* blue-50 */
+        
+        --danger-background: #dc2626; /* red-600 */
+        --danger-background-hover: #b91c1c; /* red-700 */
+        --danger-foreground: #ffffff;
+        --danger-focus-ring: #fca5a5; /* red-300 */
+        --destructive-foreground: #ef4444; /* red-500 */
+        
+        --warning-banner-background: #facc15; /* yellow-400 */
+        --warning-banner-foreground: #713f12; /* yellow-900 */
+        --warning-banner-foreground-hover: #422006; /* yellow-950 */
+
+        --badge-primary-background: #dbeafe; /* blue-100 */
+        --badge-primary-foreground: #1e40af; /* blue-800 */
+        --badge-success-background: #dcfce7; /* green-100 */
+        --badge-success-foreground: #166534; /* green-800 */
+        --badge-danger-background: #fee2e2; /* red-100 */
+        --badge-danger-foreground: #991b1b; /* red-800 */
+        
+        --input-disabled-background: #f3f4f6; /* gray-100 */
+        --input-disabled-border: #d1d5db; /* gray-300 */
+        --input-disabled-foreground: #6b7280; /* gray-500 */
+        
+        --metric-icon-info: #3b82f6; /* blue-500 */
+        --metric-icon-success: #22c55e; /* green-500 */
+        --metric-icon-warning: #eab308; /* yellow-500 */
+        
+        --accent-background: #eff6ff; /* blue-50 */
+        --modal-overlay-background: rgba(15, 23, 42, 0.8);
+
+        --interactive-hover-background: rgba(0, 0, 0, 0.05);
+
+        --accent-1: #ef4444; /* red-500 */
+        --accent-2: #f97316; /* orange-500 */
+        --accent-3: #eab308; /* yellow-500 */
+        --accent-4: #22c55e; /* green-500 */
+        --accent-5: #3b82f6; /* blue-500 */
+        --accent-6: #8b5cf6; /* violet-500 */
+      }
+
+      html.dark {
+        --primary-color: #3b82f6; /* Default Blue */
+        --primary-color-hover: #60a5fa;
+        --primary-color-focus-ring: #2563eb;
+        --primary-foreground: #ffffff;
+
+        /* Dark Theme Palette */
+        --background: linear-gradient(to bottom right, #020617, #0f172a); /* slate-950 to slate-900 */
+        --foreground: #f8fafc; /* slate-50 */
+        --foreground-muted: #94a3b8; /* slate-400 */
+
+        --card-background: #0f172a; /* slate-900 */
+        --card-foreground: #f8fafc; /* slate-50 */
+        --card-footer-background: #1e293b; /* slate-800 */
+        --card-inset-background: #020617; /* slate-950 */
+        
+        --popover-background: #1e293b; /* slate-800 */
+        --popover-foreground: #f8fafc;
+
+        --border: #475569; /* slate-600 */
+        --input: #334155; /* slate-700 */
+        --ring: #2563eb; /* blue-700 */
+        
+        --placeholder-background: #1e293b; /* slate-800 */
+        --placeholder-foreground: #64748b; /* slate-500 */
+        --metric-card-background: #1e293b; /* slate-800 */
+        --metric-card-hover-background: #334155 winter; /* slate-700 */
+        --metric-card-arrow-color: #64748b; /* slate-500 */
+        --header-background: #0f172acc; /* slate-900 with ~80% opacity */
+        --skeleton-background: #374151; /* gray-700 */
+
+        /* New Variables */
+        --secondary-background: #334155; /* slate-700 */
+        --secondary-foreground: #e2e8f0; /* slate-200 */
+        --secondary-border: #475569; /* slate-600 */
+        --secondary-hover-background: #475569; /* slate-600 */
+        
+        --sidebar-background: #0f172a; /* slate-900 */
+        --sidebar-foreground: #cbd5e1; /* slate-300 */
+        --sidebar-muted-foreground: #94a3b8; /* slate-400 */
+        --sidebar-border: #1e293b; /* slate-800 */
+        --sidebar-active-background: #33415580; /* slate-700 with opacity */
+        --sidebar-hover-background: #33415580; /* slate-700 with opacity */
+
+        --toast-success-background: #14532d; /* green-900 */
+        --toast-success-foreground: #bbf7d0; /* green-200 */
+        --toast-error-background: #7f1d1d; /* red-900 */
+        --toast-error-foreground: #fecaca; /* red-200 */
+        --toast-info-background: #1e40af; /* blue-800 */
+        --toast-info-foreground: #bfdbfe; /* blue-200 */
+        --toast-warning-background: #451a03; /* yellow-950 */
+        --toast-warning-foreground: #fde047; /* yellow-300 */
+
+        --main-background: #020617; /* slate-950 */
+        --footer-background: #0f172a; /* slate-900 */
+
+        --tab-background: #1e293b; /* slate-800 */
+        --tab-foreground: #cbd5e1; /* slate-300 */
+
+        --tab-active-background: var(--card-background);
+        --tab-active-foreground: var(--primary-color);
+        --tab-hover-background: rgba(51, 65, 85, 0.5);
+        
+        --list-item-hover-background: #334155; /* slate-700 */
+        --list-item-active-background: #1e293b; /* slate-800 */
+        
+        --danger-background: #ef4444; /* red-500 */
+        --danger-background-hover: #dc2626; /* red-600 */
+        --danger-foreground: #ffffff;
+        --danger-focus-ring: #b91c1c; /* red-700 */
+        --destructive-foreground: #f87171; /* red-400 */
+
+        --warning-banner-background: #eab308; /* yellow-500 */
+        --warning-banner-foreground: #422006; /* yellow-950 */
+        --warning-banner-foreground-hover: #713f12; /* yellow-900 */
+        
+        --badge-primary-background: rgba(30, 58, 138, 0.5); /* blue-900/50 */
+        --badge-primary-foreground: #bfdbfe; /* blue-200 */
+        --badge-success-background: rgba(20, 83, 45, 0.5); /* green-900/50 */
+        --badge-success-foreground: #bbf7d0; /* green-200 */
+        --badge-danger-background: rgba(127, 29, 29, 0.5); /* red-900/50 */
+        --badge-danger-foreground: #fecaca; /* red-200 */
+
+        --input-disabled-background: #334155; /* slate-700 */
+        --input-disabled-border: #475569; /* slate-600 */
+        --input-disabled-foreground: #94a3b8; /* slate-400 */
+        
+        --metric-icon-info: #60a5fa; /* blue-400 */
+        --metric-icon-success: #4ade80; /* green-400 */
+        --metric-icon-warning: #facc15; /* yellow-400 */
+
+        --accent-background: rgba(30, 64, 175, 0.5); /* blue-800/50 */
+        --modal-overlay-background: rgba(15, 23, 42, 0.8);
+        
+        --interactive-hover-background: rgba(255, 255, 255, 0.1);
+
+        --accent-1: #f87171; /* red-400 */
+        --accent-2: #fb923c; /* orange-400 */
+        --accent-3: #facc15; /* yellow-400 */
+        --accent-4: #4ade80; /* green-400 */
+        --accent-5: #60a5fa; /* blue-400 */
+        --accent-6: #a78bfa; /* violet-400 */
+      }
+
+      /* Helper class for hiding scrollbars on carousels */
+      .scrollbar-hide::-webkit-scrollbar {
+        display: none;
+      }
+      .scrollbar-hide {
+        -ms-overflow-style: none;  /* IE and Edge */
+        scrollbar-width: none;  /* Firefox */
+      }
+
+      /* Progress Bar Stripe Animation */
+      @keyframes progress-stripe {
+        from { background-position: 1rem 0; }
+        to { background-position: 0 0; }
+      }
+      .animate-progress-stripe {
+        animation: progress-stripe 1s linear infinite;
+      }
+    </style>
+    <script>
+      // IIFE to apply theme from localStorage before React loads, preventing FOUC (Flash of Unstyled Content)
+      (function() {
+        try {
+          // 1. FOUC prevention for Dark Mode
+          const theme = localStorage.getItem('theme');
+          if (theme === 'dark' || (!theme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+          } else {
+            document.documentElement.classList.remove('dark');
+          }
+
+          // 2. FOUC prevention for Primary Color
+          const savedColor = localStorage.getItem('primaryColor');
+          if (savedColor) {
+            // Inlined theme application logic to run synchronously without external dependencies.
+            const shadeColor = (color, percent) => {
+              let R = parseInt(color.substring(1, 3), 16);
+              let G = parseInt(color.substring(3, 5), 16);
+              let B = parseInt(color.substring(5, 7), 16);
+              R = parseInt(String(R * (100 + percent) / 100));
+              G = parseInt(String(G * (100 + percent) / 100));
+              B = parseInt(String(B * (100 + percent) / 100));
+              R = (R < 255) ? R : 255; G = (G < 255) ? G : 255; B = (B < 255) ? B : 255;
+              R = Math.max(0, R); G = Math.max(0, G); B = Math.max(0, B);
+              const RR = ((R.toString(16).length === 1) ? "0" + R.toString(16) : R.toString(16));
+              const GG = ((G.toString(16).length === 1) ? "0" + G.toString(16) : G.toString(16));
+              const BB = ((B.toString(16).length === 1) ? "0" + B.toString(16) : B.toString(16));
+              return "#" + RR + GG + BB;
+            };
+
+            const hoverColor = shadeColor(savedColor, -10);
+            const focusRingColor = shadeColor(savedColor, 50) + '80'; // Add transparency
+            
+            const root = document.documentElement;
+            root.style.setProperty('--primary-color', savedColor);
+            root.style.setProperty('--primary-color-hover', hoverColor);
+            root.style.setProperty('--primary-color-focus-ring', focusRingColor);
+          }
+        } catch (e) {
+          // Ignore errors; default theme will apply.
+        }
+      })();
+    </script>
+<script type="importmap">
+{
+  "imports": {
+    "react": "https://esm.sh/react@19.0.0-rc-f994737d14-20240522",
+    "react-dom": "https://esm.sh/react-dom@19.0.0-rc-f994737d14-20240522",
+    "react-dom/client": "https://esm.sh/react-dom@19.0.0-rc-f994737d14-20240522/client",
+    "lucide-react": "https://aistudiocdn.com/lucide-react@^0.546.0",
+    "date-fns": "https://aistudiocdn.com/date-fns@^4.1.0",
+    "recharts": "https://esm.sh/recharts@2.12.7?external=react,react-dom",
+    "prop-types": "https://esm.sh/prop-types@15.8.1",
+    "react/": "https://esm.sh/react@19.0.0-rc-f994737d14-20240522/",
+    "react-dom/": "https://esm.sh/react-dom@19.0.0-rc-f994737d14-20240522/"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+<body class="bg-[var(--background)] text-[var(--foreground)] antialiased font-sans min-h-screen">
+    <div id="root"></div>
+    <div id="portal-root"></div>
+    <script type="module" src="./index.tsx"></script>
+<script type="module" src="/index.tsx"></script>
+</body>
+</html>
